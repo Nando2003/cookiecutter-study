@@ -1,0 +1,17 @@
+services:
+  docs:
+    image: nando_local_docs
+    container_name: nando_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - /app/.venv
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./nando:/app/nando:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
